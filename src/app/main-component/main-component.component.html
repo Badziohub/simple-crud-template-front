@@ -1,0 +1,48 @@
+<mat-toolbar>
+  <span>Simple CRUD To Do</span>
+  <button class="nav-button" mat-button color="accent" (click)="getItems()" >Show All</button>
+  <button class="nav-button" mat-button color="accent" (click)="addItem()" >Add</button>
+  <div class ="request-counter">
+    <h4> Requests made: {{requests}}</h4>
+  </div>
+</mat-toolbar>
+
+<table mat-table [dataSource]="items" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id. </th>
+    <td mat-cell *matCellDef="let item"> {{item.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="content">
+    <th mat-header-cell *matHeaderCellDef> Content </th>
+    <td mat-cell *matCellDef="let item"> {{item.content}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let item"> {{item.status}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell style="width: 10%" *matHeaderCellDef></th>
+    <td mat-cell style="width: 10%" *matCellDef="let item">
+      <button mat-button color="primary"  >Edit</button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell style="width: 10%" *matHeaderCellDef></th>
+    <td mat-cell style="width: 10%" *matCellDef="let item">
+      <button mat-button color="warn" (click)="delete(item.id)" >Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+
+
