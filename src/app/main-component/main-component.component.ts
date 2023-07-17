@@ -8,6 +8,8 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ɵEmptyOutletComponent} from "@angular/router";
 import {Item} from "./Item";
 import {MatTableModule} from "@angular/material/table";
+import {AddingComponent} from "../adding/adding.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -16,7 +18,7 @@ import {MatTableModule} from "@angular/material/table";
   templateUrl: './main-component.component.html',
   styleUrls: ['./main-component.component.scss'],
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, NgForOf, ɵEmptyOutletComponent, NgIf, MatTableModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, NgForOf, ɵEmptyOutletComponent, NgIf, MatTableModule, AddingComponent, FormsModule],
 })
 
 export class MainComponentComponent implements OnInit{
@@ -25,6 +27,7 @@ export class MainComponentComponent implements OnInit{
   constructor(private httpConfig: HttpConfig) {
   }
 
+  addingShown : boolean = false;
   requests : number = 0;
   items : Item[] = [];
   displayedColumns: string[] = ['id', 'content', 'status','edit', 'delete'];
@@ -33,8 +36,11 @@ export class MainComponentComponent implements OnInit{
     this.getCounter();
   }
 
+  toggleAdding(){
+    this.addingShown = !this.addingShown;
+  }
 
-
+//wiem ze subscribe jest deprecated, ale tu mi pasuje, a zaden ze mnie pro front
   getCounter():void{
      this.httpConfig.getCounter().subscribe(
       res => {
@@ -52,18 +58,6 @@ export class MainComponentComponent implements OnInit{
           this.items = res as Item[];
         this.getCounter();
 
-      },
-      err => {
-        throw err;
-      }
-    );
-
-  }
-
-  addItem():void{
-    this.httpConfig.addItem().subscribe(
-      res => {
-        this.getItems();
       },
       err => {
         throw err;

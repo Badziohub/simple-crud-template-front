@@ -1,0 +1,14 @@
+  <table class="example-full-width" style="width: 80%"><tr>
+    <mat-form-field class="example-full-width" style = "width: 75%">
+      <mat-label>To do</mat-label>
+      <textarea matInput placeholder="What you need to do?" [(ngModel)]="content"></textarea>
+    </mat-form-field>
+    <mat-radio-group aria-label="Select an option" [(ngModel)]="status" >
+      <mat-radio-button value="TO_DO" >To do</mat-radio-button>
+      <mat-radio-button value="DONE">Done</mat-radio-button>
+      <mat-radio-button value="CANCELLED">Cancelled</mat-radio-button>
+    </mat-radio-group>
+    <button class="nav-button" mat-button color="accent" (click) = "sendItem()" >Add</button>
+  </tr>
+  </table>
+

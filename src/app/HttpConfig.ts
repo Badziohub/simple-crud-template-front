@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Item} from "./main-component/Item";
 
 @Injectable({ providedIn: 'root' })
 export class HttpConfig {
@@ -18,9 +19,8 @@ export class HttpConfig {
     return this.http.get("http://localhost:8080/");
   }
 
-  addItem(){
-    console.log(JSON.stringify(this.postData));
-    return this.http.post("http://localhost:8080/",this.postData);
+  addItem(postData : any){
+    return this.http.post("http://localhost:8080/",postData);
   }
 
   delete(id : number){

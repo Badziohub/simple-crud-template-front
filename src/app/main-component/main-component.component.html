@@ -1,11 +1,13 @@
 <mat-toolbar>
   <span>Simple CRUD To Do</span>
   <button class="nav-button" mat-button color="accent" (click)="getItems()" >Show All</button>
-  <button class="nav-button" mat-button color="accent" (click)="addItem()" >Add</button>
+  <button class="nav-button" mat-button color="accent" (click)="toggleAdding()" >Add</button>
   <div class ="request-counter">
     <h4> Requests made: {{requests}}</h4>
   </div>
 </mat-toolbar>
+
+<app-adding *ngIf="addingShown"></app-adding>
 
 <table mat-table [dataSource]="items" class="mat-elevation-z8">
 
