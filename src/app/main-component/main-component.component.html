@@ -5,9 +5,22 @@
   <div class ="request-counter">
     <h4> Requests made: {{requests}}</h4>
   </div>
+  <div class="sorting">
+    <mat-form-field>
+      <mat-label>Sorting</mat-label>
+      <mat-select [(ngModel)]="sorting" (ngModelChange)="sortItems()">
+        <mat-option value="none" disabled>None</mat-option>
+        <mat-option value="idDesc">By id descending</mat-option>
+        <mat-option value="idAsc">By id ascending</mat-option>
+        <mat-option value="statusDesc">By status descending</mat-option>
+        <mat-option value="statusAsc">By status ascending</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </mat-toolbar>
 
 <app-adding *ngIf="addingShown"></app-adding>
+
 <div>
   <app-editing *ngIf="editingShown"></app-editing>
 <table mat-table [dataSource]="items" class="mat-elevation-z8">
