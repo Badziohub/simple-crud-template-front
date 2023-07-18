@@ -23,6 +23,10 @@ export class HttpConfig {
     return this.http.post("http://localhost:8080/",postData);
   }
 
+  updateItem(id : number,postData : any){
+    return this.http.put("http://localhost:8080/"+id,postData);
+  }
+
   delete(id : number){
     return this.http.delete("http://localhost:8080/"+id);
   }

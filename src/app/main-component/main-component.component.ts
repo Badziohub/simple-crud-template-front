@@ -10,6 +10,7 @@ import {Item} from "./Item";
 import {MatTableModule} from "@angular/material/table";
 import {AddingComponent} from "../adding/adding.component";
 import {FormsModule} from "@angular/forms";
+import {EditingComponent} from "../editing/editing.component";
 
 
 
@@ -18,7 +19,7 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './main-component.component.html',
   styleUrls: ['./main-component.component.scss'],
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, NgForOf, ɵEmptyOutletComponent, NgIf, MatTableModule, AddingComponent, FormsModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatListModule, NgForOf, ɵEmptyOutletComponent, NgIf, MatTableModule, AddingComponent, FormsModule,EditingComponent],
 })
 
 export class MainComponentComponent implements OnInit{
@@ -28,8 +29,10 @@ export class MainComponentComponent implements OnInit{
   }
 
   addingShown : boolean = false;
+  editingShown : boolean = false;
   requests : number = 0;
   items : Item[] = [];
+  pickedId : number | undefined;
   displayedColumns: string[] = ['id', 'content', 'status','edit', 'delete'];
   ngOnInit() {
     this.getItems();
@@ -38,6 +41,19 @@ export class MainComponentComponent implements OnInit{
 
   toggleAdding(){
     this.addingShown = !this.addingShown;
+  }
+
+  toggleEditing(id : number){
+
+    if(this.editingShown == true && this.pickedId == id) {
+      this.editingShown = !this.editingShown;
+    } else if(this.editingShown == true && this.pickedId != id) {
+      this.editingShown = !this.editingShown;
+    } else {
+      this.pickedId = id;
+      this.editingShown = !this.editingShown;
+    }
+
   }
 
 //wiem ze subscribe jest deprecated, ale tu mi pasuje, a zaden ze mnie pro front

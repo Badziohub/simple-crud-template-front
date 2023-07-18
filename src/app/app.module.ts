@@ -8,6 +8,7 @@ import { MainComponentComponent } from './main-component/main-component.componen
 import { AddingComponent } from './adding/adding.component';
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { EditingComponent } from './editing/editing.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         HttpClientModule,
         AddingComponent,
       FormsModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      EditingComponent
     ],
     providers: [],
     exports: [
